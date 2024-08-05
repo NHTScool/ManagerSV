@@ -1,0 +1,35 @@
+﻿@model Student
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Sinh Viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Thêm Sinh Viên</h1>
+        <form asp-action="Create" method="post" class="form">
+            <div class="form-group">
+                <label for="Mssv">Mssv</label>
+                <input type="text" class="form-control" id="Mssv" name="Mssv" required>
+            </div>
+            <div class="form-group">
+                <label for="Name">Tên</label>
+                <input type="text" class="form-control" id="Name" name="Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Course">Khóa</label>
+                <input type="number" class="form-control" id="Course" name="Course" required>
+            </div>
+            <div class="form-group">
+                <label for="Carrer">Ngành học </label>
+                <input type="text" class="form-control" id="Carrer" name="Carrer" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm</button>
+        </form>
+    </div>
+</body>
+</html>

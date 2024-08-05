@@ -1,0 +1,66 @@
+﻿
+@using ManagerSV.Models
+@model PageViewModel<Student>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh Sách Sinh Viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Danh Sách Sinh Viên</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Mssv</th>
+                    <th>Tên</th>
+                    <th>Khóa</th>
+                    <th>Lớp</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model.Items)
+                {
+                    <tr>
+                        <td>@student.Mssv</td>
+                        <td>@student.Name</td>
+                        <td>@student.Course</td>
+                        <td>@student.Carrer</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                @if (Model.PageNumber > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="?page=@(Model.PageNumber - 1)&pageSize=@Model.PageSize" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                }
+                @for (int i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                        <a class="page-link" href="?page=@i&pageSize=@Model.PageSize">@i</a>
+                    </li>
+                }
+                @if (Model.PageNumber < Model.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="?page=@(Model.PageNumber + 1)&pageSize=@Model.PageSize" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

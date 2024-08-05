@@ -1,0 +1,118 @@
+﻿@using ManagerSV.Models
+@model List<Student>
+
+@{
+
+    ViewData["Title"] = "Find Student";
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+<h2>Find Student</h2>
+
+<form method="get" asp-action="GetByNameAll">
+    <div class="form-group">
+        <label for="name">Student Name:</label>
+        <input type="text" id="name" name="name" class="form-control" required />
+    </div>
+    <button type="submit" id="find" class="btn btn-primary">Find</button>
+</form>
+
+<h3>Student Details</h3>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-warning">
+        @ViewBag.ErrorMessage
+    </div>
+}
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mssv</th>
+                <th>Name</th>
+                <th>Carrer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Mssv</td>
+                    <td>@student.Name</td>
+                    <td>@student.Carrer</td>
+                    <td>
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="id" value="@student.Id" />
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Student not found.</p>
+}
+
+
+
+
+
+
+
+
+
+@* <form method="get" asp-action="GetByNameAll">
+    <div class="form-group">
+        <label for="name">Student Name:</label>
+        <input type="text" id="name" name="name" class="form-control" required />
+    </div>
+    <button type="submit" id="timkierm" class="btn btn-primary">Find</button>
+</form>
+ *@
+
+
+
+
+
+@* <h3>Student Details</h3>
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-warning">
+        @ViewBag.ErrorMessage
+    </div>
+}
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <tr>
+            <th>Mssv</th>
+            <th>Name</th>
+            <th>Mssv</th>
+            <th>Carrer</th>
+
+        </tr>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.Mssv</td>
+                <td>@student.Name</td>
+                <td>@student.Mssv</td>
+                <td>@student.Carrer</td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>Student not found.</p>
+}  *@
